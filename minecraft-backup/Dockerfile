@@ -1,4 +1,8 @@
 FROM alpine
+ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini"]
+
 ENV RCON_HOST=minecraft
 ENV RCON_PORT=25575
 ENV RCON_PASSWORD=minecraft
