@@ -1,4 +1,4 @@
 #!/bin/sh
 set -e
-cp -a /app/template/* /output/
-python papyri.py --banners --mcdata /data/world --output /output
+echo "$SCHEDULE" /papyri.sh ">/proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root
+exec crond -f
