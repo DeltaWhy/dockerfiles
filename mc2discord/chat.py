@@ -5,11 +5,11 @@ import requests
 import time
 
 
-JOIN_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]: (?P<player>[A-Za-z0-9_]+) (?P<message>joined the game)$')
-LEAVE_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]: (?P<player>[A-Za-z0-9_]+) (?P<message>left the game)$')
-CHAT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]: (?:\[Not Secure\] )?<(?P<player>[A-Za-z0-9_]+)> (?P<message>.+)$')
-ME_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]: \* (?P<player>[A-Za-z0-9_]+) (?P<message>.+)$')
-ADVANCEMENT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]: (?P<player>[A-Za-z0-9_]+) (?P<message>has made the advancement|has completed the challenge|has reached the goal) \[(?P<advancement>[^]]+)\]$')
+JOIN_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?P<player>[A-Za-z0-9_]+) (?P<message>joined the game)$')
+LEAVE_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?P<player>[A-Za-z0-9_]+) (?P<message>left the game)$')
+CHAT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?:\[Not Secure\] )?<(?P<player>[A-Za-z0-9_]+)> (?P<message>.+)$')
+ME_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: \* (?P<player>[A-Za-z0-9_]+) (?P<message>.+)$')
+ADVANCEMENT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?P<player>[A-Za-z0-9_]+) (?P<message>has made the advancement|has completed the challenge|has reached the goal) \[(?P<advancement>[^]]+)\]$')
 
 
 if __name__ == '__main__':
