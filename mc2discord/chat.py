@@ -10,6 +10,7 @@ LEAVE_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/Minecra
 CHAT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?:\[Not Secure\] )?<(?P<player>[A-Za-z0-9_]+)> (?P<message>.+)$')
 ME_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: \* (?P<player>[A-Za-z0-9_]+) (?P<message>.+)$')
 ADVANCEMENT_RE = re.compile(r'^\[[0-9:]+\] \[Server thread/INFO\]( \[minecraft/MinecraftServer\])?: (?P<player>[A-Za-z0-9_]+) (?P<message>has made the advancement|has completed the challenge|has reached the goal) \[(?P<advancement>[^]]+)\]$')
+ANSI_ESCAPE = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 
 
 if __name__ == '__main__':
@@ -18,7 +19,7 @@ if __name__ == '__main__':
         ctr = client.containers.get(os.environ['CONTAINER_NAME'])
         for entry in ctr.attach(stream=True):
             for line in entry.decode().split('\n'):
-                line = line.strip()
+                line = ANSI_ESCAPE.sub('', line.strip())
                 if JOIN_RE.match(line):
                     match = JOIN_RE.match(line)
                     player = match['player']
